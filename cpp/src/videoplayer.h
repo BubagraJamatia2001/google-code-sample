@@ -1,8 +1,10 @@
 #pragma once
 
 #include <string>
-
+#include <queue>
+#include <algorithm>
 #include "videolibrary.h"
+#include "videoplaylist.h"
 
 /**
  * A class used to represent a Video Player.
@@ -10,6 +12,10 @@
 class VideoPlayer {
  private:
   VideoLibrary mVideoLibrary;
+  VideoPlaylist mVideoPlaylist;
+  std::queue<const Video*> currentlyPlaying;
+  bool stop=false;
+  bool paused=false;
 
  public:
   VideoPlayer() = default;
@@ -42,4 +48,5 @@ class VideoPlayer {
   void flagVideo(const std::string& videoId);
   void flagVideo(const std::string& videoId, const std::string& reason);
   void allowVideo(const std::string& videoId);
+
 };
